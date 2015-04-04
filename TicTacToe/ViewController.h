@@ -47,6 +47,6 @@
 
 - (void)changeValueOfTurn;
 - (BOOL)isEmpty:(int)index;
--(BOOL)whoWin;
+-(int)whoWin;
 
 @end

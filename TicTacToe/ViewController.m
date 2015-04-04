@@ -42,20 +42,59 @@ static int matrix[3][3];
 }
 
 
-- (BOOL) whoWin {
-    int i;
+- (int) whoWin {
+    int i,j;
     int diag=0;
     int oriz=0;
     int vert=0;
+    int diaginf=0;
     
-    for (i=0; i<[_myArrayTic count]; i++) {
+    /*
+     Controllo se sta vincendo verticalmente col fisso e row variabile
+     **/
+    for (i=0; i<3; i++) {
+        
+        /*
         id elem = [_myArrayTic objectAtIndex:i];
         NSString *item = (NSString*)elem;
         NSLog(@"whoWin said: %@",item);
+         */
+        
+        int value = matrix[i][i];
+        int secDiag = 2;
+        if(value!=0){
+            NSLog(@"Controllo il valore della matrice %i",value);
+        for (j=0; j<3; j++) {
+            
+            if(matrix[i][j]==value && matrix[i][j]!=0){
+                NSLog(@"value of matrix[i][j] %i", matrix[i][j]);
+                vert++;
+            }
+            if(matrix[j][i]==value && matrix[i][j]!=0){
+                oriz++;
+            }
+            if (matrix[j][j]==value && matrix[j][j]!=0) {
+                diag++;
+            }
+            if(matrix[secDiag][j]==value && matrix[secDiag][j]!=0){
+                diaginf++;
+            }
+            secDiag--;
+        }
+        }
+        NSLog(@"vert=%i oriz=%i diag=%i diaginf=%i", vert, oriz, diag,diaginf);
+        if(vert == 3 || oriz == 3 || diaginf ==3 || diag==3){
+            return value;
+        }
+        vert=0;
+        oriz=0;
+        diag=0;
+        diaginf=0;
         
         
     }
-    return YES;
+    
+    return -1;
 }
 
 
@@ -79,7 +118,16 @@ static int matrix[3][3];
         NSString *i = (NSString *)dictionary;
         _textTurn.text = [_txtStr stringByAppendingString:i];
     }
-    [self whoWin];
+    int winnerid = [self whoWin];
+    if(winnerid!=-1){
+        _txtStr = @"Vince il giocatore con la ";
+        if(winnerid==2){
+            _textTurn.text = [_txtStr stringByAppendingString:@"x"];
+        }else{
+            _textTurn.text = [_txtStr stringByAppendingString:@"o"];
+        }
+        
+    }
 }
 
 /**
@@ -106,21 +154,7 @@ static int matrix[3][3];
      */
     
     if(matrix[row][col]==0){
-        NSLog(@"Ciao dalla matrice");
-        int i;
-        int count=0;
-        //Verifico le righe
-        for (i=0; i<3; i++) {
-            
-        }
-        //Verifico le colonne
-        for (i=0; i<3; i++) {
-            
-        }
-        //Verifico diagonale
-        for (i=0; i<3; i++) {
-            
-        }
+        matrix[row][col]=_myValue+1;
         [self changeValueOfTurn];
     }
     return YES;
