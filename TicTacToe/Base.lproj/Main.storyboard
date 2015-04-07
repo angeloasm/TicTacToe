@@ -195,6 +195,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btn11:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="YfQ-oH-6he"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8TF-b3-idp">
                                 <rect key="frame" x="128" y="140" width="70" height="70"/>
@@ -202,6 +205,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btn12:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="aCT-Ba-Gwf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="I3a-op-6kN">
                                 <rect key="frame" x="215" y="140" width="70" height="70"/>
@@ -209,6 +215,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btn13:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="TeM-K7-fNu"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="nRD-wS-o38">
                                 <rect key="frame" x="128" y="223" width="70" height="70"/>
@@ -216,6 +225,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btn22:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="u1U-kt-PIY"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="8P0-ji-9Oz">
                                 <rect key="frame" x="215" y="223" width="70" height="70"/>
@@ -223,6 +235,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btn23:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="feg-Gh-vHj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Uz-17-h7l">
                                 <rect key="frame" x="42" y="294" width="70" height="70"/>
@@ -230,13 +245,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kNx-1x-yvQ">
-                                <rect key="frame" x="128" y="294" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <connections>
+                                    <action selector="btn31:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="GzY-T9-u8L"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T5X-in-sf5">
                                 <rect key="frame" x="215" y="294" width="70" height="70"/>
@@ -244,6 +255,9 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btn33:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="A7W-2D-fc7"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="oBD-8L-tgw">
                                 <rect key="frame" x="42" y="223" width="70" height="70"/>
@@ -251,10 +265,34 @@
                                 <state key="normal">
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="btn21:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="APW-FW-qHg"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kNx-1x-yvQ">
+                                <rect key="frame" x="128" y="294" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn32:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="cWz-wy-FNv"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.31764705882352939" green="0.29803921568627451" blue="0.25882352941176473" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <connections>
+                        <outlet property="btnView11" destination="GVm-yW-ICE" id="Z4U-Ns-VKB"/>
+                        <outlet property="btnView12" destination="8TF-b3-idp" id="Pos-H0-psw"/>
+                        <outlet property="btnView13" destination="I3a-op-6kN" id="zpR-R8-m5s"/>
+                        <outlet property="btnView21" destination="oBD-8L-tgw" id="sKB-Xa-oA8"/>
+                        <outlet property="btnView22" destination="nRD-wS-o38" id="061-OU-dDN"/>
+                        <outlet property="btnView23" destination="8P0-ji-9Oz" id="yma-ch-UXo"/>
+                        <outlet property="btnView31" destination="9Uz-17-h7l" id="tFI-w0-obv"/>
+                        <outlet property="btnView32" destination="kNx-1x-yvQ" id="Nhg-mN-V8B"/>
+                        <outlet property="btnView33" destination="T5X-in-sf5" id="3bR-3R-eKM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15r-mz-tP3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

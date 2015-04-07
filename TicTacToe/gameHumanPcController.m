@@ -23,6 +23,32 @@
 }
 
 
+- (IBAction)btn11:(id)sender {
+}
+
+- (IBAction)btn12:(id)sender {
+}
+
+- (IBAction)btn13:(id)sender {
+}
+
+- (IBAction)btn21:(id)sender {
+}
+
+- (IBAction)btn22:(id)sender {
+}
+
+- (IBAction)btn23:(id)sender {
+}
+
+- (IBAction)btn31:(id)sender {
+}
+
+- (IBAction)btn32:(id)sender {
+}
+
+- (IBAction)btn33:(id)sender {
+}
 @end
 
 
