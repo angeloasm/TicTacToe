@@ -2,7 +2,7 @@
 //  ViewController.m
 //  TicTacToe
 //
-//  Created by Angelo C on 17/03/15.
+//  Created by angeloasm on 17/03/15.
 //  Copyright (c) 2015 Angelo C. All rights reserved.
 //
 
@@ -12,15 +12,22 @@
 @end
 
 @implementation ViewController
-static int matrix[3][3];
-//Si avvia dando il turno ad un primo concorrente.
-//Settando i parametri necessari quali:
 
-// _myValue: la variabile che permette di definire con quale segno inizia il primo giocatore
-// _myArray2: l'array che contiene le variabili del gioco x o che sono i segni che andranno a riempire la matrice
-// _myArrayTic: Array che è inizializzato con stringhe vuote e che serve per segnare dove è stata messa il rispettivo valore.
+
+/**
+ * This variable init the matrix who the game is based.
+ * It's static because it's used in all scope of this file.
+ */
+static int matrix[3][3];
+
+
+/*************FUNCTION FOR THE RESTART*******************/
+/**
+ * This function reset the matrix for restart a new game.
+ */
 
 -(void)resetMatrix{
+    //This variable is used for the iteration of reset matrix bidimensional array.
     int i;
     for(i=0;i<3;i++){
         int j;
@@ -30,18 +37,29 @@ static int matrix[3][3];
     }
 }
 
+/**
+ * Thi method is called when the user want restart the game.
+ * It reset the all variable of the game such as btnView matrix and the variable that the game require.
+ */
+
 -(void)restart{
+    //This array contains the symbol of the game.
     _myArray2 = [NSArray arrayWithObjects:@"x",@"o", nil];
+    // This is a call of function for restart the matrix.
     [self resetMatrix];
-    
-    _myValue=arc4random() % 2;
-    NSLog(@"%i",_myValue);
+    //Assign a new pseudo-rand number for the turn of the user.
+    _turnRandom=arc4random() % 2;
+    //Log of new number turn.
+    NSLog(@"%i",_turnRandom);
     _val =@"x";
     _user=@"x";
+    //This string is set for visualize at users turn.
     _txtStr = @"Gioca il giocatore con la ";
-    id dictionary = [_myArray2 objectAtIndex:_myValue];
+    id dictionary = [_myArray2 objectAtIndex:_turnRandom];
     NSString *i = (NSString *)dictionary;
+    //Obtain the symbol assigned for the user we can start the turn.
     _textTurn.text = [_txtStr stringByAppendingString:i];
+    //Reset all images of buttun view inside the matrix view.
     [_btnView33 setImage:nil forState:UIControlStateNormal];
     [_btnView32 setImage:nil forState:UIControlStateNormal];
     [_btnView31 setImage:nil forState:UIControlStateNormal];
@@ -51,21 +69,34 @@ static int matrix[3][3];
     [_btnView13 setImage:nil forState:UIControlStateNormal];
     [_btnView12 setImage:nil forState:UIControlStateNormal];
     [_btnView11 setImage:nil forState:UIControlStateNormal];
-
-    
     
 }
+
+
+
+//Si avvia dando il turno ad un primo concorrente.
+//Settando i parametri necessari quali:
+
+// _turnRandom: la variabile che permette di definire con quale segno inizia il primo giocatore
+// _myArray2: l'array che contiene le variabili del gioco x o che sono i segni che andranno a riempire la matrice
+// _myArrayTic: Array che è inizializzato con stringhe vuote e che serve per segnare dove è stata messa il rispettivo valore.
+
+/**
+ * This method is called by iOS when this app is started.
+ * The code is the same of the method restartGame.
+ */
+
 
 - (void)viewDidLoad {
     _myArray2 = [NSArray arrayWithObjects:@"x",@"o", nil];
     _myArrayTic = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",nil];
     [super viewDidLoad];
-    _myValue=arc4random() % 2;
-    NSLog(@"%i",_myValue);
+    _turnRandom=arc4random() % 2;
+    NSLog(@"%i",_turnRandom);
     _val =@"x";
     _user=@"x";
     _txtStr = @"Gioca il giocatore con la ";
-    id dictionary = [_myArray2 objectAtIndex:_myValue];
+    id dictionary = [_myArray2 objectAtIndex:_turnRandom];
     NSString *i = (NSString *)dictionary;
     _textTurn.text = [_txtStr stringByAppendingString:i];
     
@@ -135,22 +166,22 @@ static int matrix[3][3];
 
 
 /**
- Funzione che permette il cambio del turno portando il valore di _myValue tra 0 ed 1 per identificare il valore
+ Funzione che permette il cambio del turno portando il valore di _turnRandom tra 0 ed 1 per identificare il valore
  dell'array _myArray2 per saperequale valore sarà inserito .
  
  */
 - (void)changeValueOfTurn {
 
-    if(_myValue == 1){
-        _myValue=0;
+    if(_turnRandom == 1){
+        _turnRandom=0;
         _txtStr = @"Gioca il giocatore con la ";
-        id dictionary = [_myArray2 objectAtIndex:_myValue+1];
+        id dictionary = [_myArray2 objectAtIndex:_turnRandom+1];
         NSString *i = (NSString *)dictionary;
         _textTurn.text = [_txtStr stringByAppendingString:i];
     }else{
-        _myValue++;
+        _turnRandom++;
         _txtStr = @"Gioca il giocatore con la ";
-        id dictionary = [_myArray2 objectAtIndex:_myValue-1];
+        id dictionary = [_myArray2 objectAtIndex:_turnRandom-1];
         NSString *i = (NSString *)dictionary;
         _textTurn.text = [_txtStr stringByAppendingString:i];
     }
@@ -190,38 +221,11 @@ static int matrix[3][3];
      */
     
     if(matrix[row][col]==0){
-        matrix[row][col]=_myValue+1;
+        matrix[row][col]=_turnRandom+1;
         [self changeValueOfTurn];
     }
     return YES;
-    /*
-    if([self isEmpty:index]){
-        
-        if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
-            
-            UIImage *img = [UIImage imageNamed:@"o.png"];
-           // [_btnView11 setImage:img forState:UIControlStateNormal];
-            _val = @"set";
-            
-            [_myArrayTic replaceObjectAtIndex:index withObject:@"1"];
-            [self changeValueOfTurn];
-            
-        }else{
-            if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"x"]){
-                UIImage *img = [UIImage imageNamed:@"x.png"];
-               // [_btnView11 setImage:img forState:UIControlStateNormal];
-                [_myArrayTic replaceObjectAtIndex:index withObject:@"2"];
-                 _val = @"set";
-                [self changeValueOfTurn];
-                
-                
-            }
-        }
-        return YES;
-    }else{
-        return NO;
-    }
-     */
+    
 
 }
 
@@ -235,14 +239,14 @@ static int matrix[3][3];
 - (IBAction)btn33:(id)sender {
     // SE si verifica che la cella in questione ( 3:3 ) è piena non fare nulla!
     if([self arraySign:2 and:2]){
-        if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
+        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView33 setImage:img forState:UIControlStateNormal];
             
             
         }else{
-            if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"x"]){
+            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
                 UIImage *img = [UIImage imageNamed:@"x.png"];
                 [_btnView33 setImage:img forState:UIControlStateNormal];
                 
@@ -255,14 +259,14 @@ static int matrix[3][3];
 - (IBAction)btn32:(id)sender {
     // SE si verifica che la cella in questione ( 3:2 ) è piena non fare nulla!
     if([self arraySign:2 and:1]){
-        if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
+        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView32 setImage:img forState:UIControlStateNormal];
             
             
         }else{
-            if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"x"]){
+            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
                 UIImage *img = [UIImage imageNamed:@"x.png"];
                 [_btnView32 setImage:img forState:UIControlStateNormal];
                 
@@ -275,14 +279,14 @@ static int matrix[3][3];
 - (IBAction)btn31:(id)sender {
     // SE si verifica che la cella in questione ( 3:1 ) è piena non fare nulla!
     if([self arraySign:2 and:0]){
-        if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
+        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView31 setImage:img forState:UIControlStateNormal];
             
             
         }else{
-            if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"x"]){
+            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
                 UIImage *img = [UIImage imageNamed:@"x.png"];
                 [_btnView31 setImage:img forState:UIControlStateNormal];
                 
@@ -296,14 +300,14 @@ static int matrix[3][3];
 - (IBAction)btn23:(id)sender {
     // SE si verifica che la cella in questione ( 2:3 ) è piena non fare nulla!
     if([self arraySign:1 and: 2]){
-        if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
+        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView23 setImage:img forState:UIControlStateNormal];
             
             
         }else{
-            if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"x"]){
+            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
                 UIImage *img = [UIImage imageNamed:@"x.png"];
                 [_btnView23 setImage:img forState:UIControlStateNormal];
                 
@@ -315,14 +319,14 @@ static int matrix[3][3];
 - (IBAction)btn22:(id)sender {
     // SE si verifica che la cella in questione ( 2:2 ) è piena non fare nulla!
     if([self arraySign:1 and:1]){
-        if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
+        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView22 setImage:img forState:UIControlStateNormal];
             
             
         }else{
-            if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"x"]){
+            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
                 UIImage *img = [UIImage imageNamed:@"x.png"];
                 [_btnView22 setImage:img forState:UIControlStateNormal];
                 
@@ -334,14 +338,14 @@ static int matrix[3][3];
 - (IBAction)btn21:(id)sender {
     // SE si verifica che la cella in questione ( 2:1 ) è piena non fare nulla!
     if([self arraySign:1 and:0]){
-        if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
+        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView21 setImage:img forState:UIControlStateNormal];
             
             
         }else{
-            if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"x"]){
+            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
                 UIImage *img = [UIImage imageNamed:@"x.png"];
                 [_btnView21 setImage:img forState:UIControlStateNormal];
                 
@@ -355,14 +359,14 @@ static int matrix[3][3];
 - (IBAction)btn13:(id)sender {
     // SE si verifica che la cella in questione ( 1:3 ) è piena non fare nulla!
     if([self arraySign:0 and:2]){
-        if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
+        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView13 setImage:img forState:UIControlStateNormal];
             
             
         }else{
-            if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"x"]){
+            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
                 UIImage *img = [UIImage imageNamed:@"x.png"];
                 [_btnView13 setImage:img forState:UIControlStateNormal];
                 
@@ -376,14 +380,14 @@ static int matrix[3][3];
 - (IBAction)btn12:(id)sender {
     // SE si verifica che la cella in questione ( 1:2 ) è piena non fare nulla!
     if([self arraySign:0 and:1]){
-        if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
+        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView12 setImage:img forState:UIControlStateNormal];
             
             
         }else{
-            if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"x"]){
+            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
                 UIImage *img = [UIImage imageNamed:@"x.png"];
                 [_btnView12 setImage:img forState:UIControlStateNormal];
                 
@@ -400,14 +404,14 @@ static int matrix[3][3];
     
     // SE si verifica che la cella in questione ( 1:1 ) è piena non fare nulla!
     if([self arraySign:0 and:0]){
-        if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
+        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView11 setImage:img forState:UIControlStateNormal];
             
             
         }else{
-            if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"x"]){
+            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
                 UIImage *img = [UIImage imageNamed:@"x.png"];
                 [_btnView11 setImage:img forState:UIControlStateNormal];
             

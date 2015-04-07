@@ -16,7 +16,7 @@
 @property (retain, nonatomic) NSArray  * myArray2;
 @property (retain, nonatomic) NSMutableArray  * myArrayTic;
 @property (retain, nonatomic) NSString *i;
-@property int myValue;
+@property int turnRandom;
 @property (retain, nonatomic) NSString *txtStr;
 @property (weak, nonatomic) IBOutlet UILabel *textTurn;
 

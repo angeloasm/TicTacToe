@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97A5CB6A1AD40C2A00A02803 /* gameHumanPcController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A5CB691AD40C2A00A02803 /* gameHumanPcController.m */; };
 		97C06E5D1AD3E9C8005C00AC /* home-btn1vs1.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C06E5C1AD3E9C8005C00AC /* home-btn1vs1.png */; };
 		97C06E5F1AD3EA49005C00AC /* btn1vsPC.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C06E5E1AD3EA49005C00AC /* btn1vsPC.png */; };
 		97C5AA4F1AB8485000123F90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5AA4E1AB8485000123F90 /* main.m */; };
@@ -33,6 +34,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		97A5CB681AD40C2A00A02803 /* gameHumanPcController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = gameHumanPcController.h; sourceTree = "<group>"; };
+		97A5CB691AD40C2A00A02803 /* gameHumanPcController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameHumanPcController.m; sourceTree = "<group>"; };
 		97C06E5C1AD3E9C8005C00AC /* home-btn1vs1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-btn1vs1.png"; path = "../../Pictures/home-btn1vs1.png"; sourceTree = "<group>"; };
 		97C06E5E1AD3EA49005C00AC /* btn1vsPC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn1vsPC.png; path = ../../Pictures/btn1vsPC.png; sourceTree = "<group>"; };
 		97C5AA491AB8485000123F90 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -107,6 +110,8 @@
 				97C5AA591AB8485000123F90 /* Images.xcassets */,
 				97C5AA5B1AB8485000123F90 /* LaunchScreen.xib */,
 				97C5AA4C1AB8485000123F90 /* Supporting Files */,
+				97A5CB681AD40C2A00A02803 /* gameHumanPcController.h */,
+				97A5CB691AD40C2A00A02803 /* gameHumanPcController.m */,
 			);
 			path = TicTacToe;
 			sourceTree = "<group>";
@@ -246,6 +251,7 @@
 				97C5AA551AB8485000123F90 /* ViewController.m in Sources */,
 				97C5AA521AB8485000123F90 /* AppDelegate.m in Sources */,
 				97C5AA4F1AB8485000123F90 /* main.m in Sources */,
+				97A5CB6A1AD40C2A00A02803 /* gameHumanPcController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
