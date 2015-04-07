@@ -20,6 +20,42 @@ static int matrix[3][3];
 // _myArray2: l'array che contiene le variabili del gioco x o che sono i segni che andranno a riempire la matrice
 // _myArrayTic: Array che è inizializzato con stringhe vuote e che serve per segnare dove è stata messa il rispettivo valore.
 
+-(void)resetMatrix{
+    int i;
+    for(i=0;i<3;i++){
+        int j;
+        for(j=0;j<3;j++){
+            matrix[i][j]=0;
+        }
+    }
+}
+
+-(void)restart{
+    _myArray2 = [NSArray arrayWithObjects:@"x",@"o", nil];
+    [self resetMatrix];
+    
+    _myValue=arc4random() % 2;
+    NSLog(@"%i",_myValue);
+    _val =@"x";
+    _user=@"x";
+    _txtStr = @"Gioca il giocatore con la ";
+    id dictionary = [_myArray2 objectAtIndex:_myValue];
+    NSString *i = (NSString *)dictionary;
+    _textTurn.text = [_txtStr stringByAppendingString:i];
+    [_btnView33 setImage:nil forState:UIControlStateNormal];
+    [_btnView32 setImage:nil forState:UIControlStateNormal];
+    [_btnView31 setImage:nil forState:UIControlStateNormal];
+    [_btnView23 setImage:nil forState:UIControlStateNormal];
+    [_btnView22 setImage:nil forState:UIControlStateNormal];
+    [_btnView21 setImage:nil forState:UIControlStateNormal];
+    [_btnView13 setImage:nil forState:UIControlStateNormal];
+    [_btnView12 setImage:nil forState:UIControlStateNormal];
+    [_btnView11 setImage:nil forState:UIControlStateNormal];
+
+    
+    
+}
+
 - (void)viewDidLoad {
     _myArray2 = [NSArray arrayWithObjects:@"x",@"o", nil];
     _myArrayTic = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",nil];
@@ -191,6 +227,11 @@ static int matrix[3][3];
 
 
 
+- (IBAction)restartGame:(id)sender {
+    [self restart];
+
+}
+
 - (IBAction)btn33:(id)sender {
     // SE si verifica che la cella in questione ( 3:3 ) è piena non fare nulla!
     if([self arraySign:2 and:2]){
@@ -357,7 +398,6 @@ static int matrix[3][3];
 
 - (IBAction)btn11:(id)sender {
     
-    
     // SE si verifica che la cella in questione ( 1:1 ) è piena non fare nulla!
     if([self arraySign:0 and:0]){
         if([[_myArray2 objectAtIndex: _myValue] isEqualToString:@"o"]){
@@ -373,6 +413,8 @@ static int matrix[3][3];
             
             }
         }
+    }else{
+
     }
     
 }

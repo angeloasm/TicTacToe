@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		97C06E5D1AD3E9C8005C00AC /* home-btn1vs1.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C06E5C1AD3E9C8005C00AC /* home-btn1vs1.png */; };
+		97C06E5F1AD3EA49005C00AC /* btn1vsPC.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C06E5E1AD3EA49005C00AC /* btn1vsPC.png */; };
 		97C5AA4F1AB8485000123F90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5AA4E1AB8485000123F90 /* main.m */; };
 		97C5AA521AB8485000123F90 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5AA511AB8485000123F90 /* AppDelegate.m */; };
 		97C5AA551AB8485000123F90 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5AA541AB8485000123F90 /* ViewController.m */; };
@@ -31,6 +33,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		97C06E5C1AD3E9C8005C00AC /* home-btn1vs1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-btn1vs1.png"; path = "../../Pictures/home-btn1vs1.png"; sourceTree = "<group>"; };
+		97C06E5E1AD3EA49005C00AC /* btn1vsPC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn1vsPC.png; path = ../../Pictures/btn1vsPC.png; sourceTree = "<group>"; };
 		97C5AA491AB8485000123F90 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97C5AA4D1AB8485000123F90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		97C5AA4E1AB8485000123F90 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,6 +82,8 @@
 				97C5AA741AB84D0200123F90 /* o.png */,
 				97DF86141AB84EE500DD2930 /* griglia.png */,
 				97DF86161AB8528900DD2930 /* x.png */,
+				97C06E5C1AD3E9C8005C00AC /* home-btn1vs1.png */,
+				97C06E5E1AD3EA49005C00AC /* btn1vsPC.png */,
 			);
 			sourceTree = "<group>";
 		};
@@ -211,12 +217,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				97C06E5D1AD3E9C8005C00AC /* home-btn1vs1.png in Resources */,
 				97C5AA751AB84D0200123F90 /* o.png in Resources */,
 				97DF86151AB84EE500DD2930 /* griglia.png in Resources */,
 				97DF86171AB8528900DD2930 /* x.png in Resources */,
 				97C5AA581AB8485000123F90 /* Main.storyboard in Resources */,
 				97C5AA5D1AB8485000123F90 /* LaunchScreen.xib in Resources */,
 				97C5AA5A1AB8485000123F90 /* Images.xcassets in Resources */,
+				97C06E5F1AD3EA49005C00AC /* btn1vsPC.png in Resources */,
 				97C5AA731AB84AEC00123F90 /* confirmBtn.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

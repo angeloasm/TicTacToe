@@ -30,6 +30,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnView33;
 @property (weak, nonatomic) IBOutlet UIButton *btnView11;
 
+- (IBAction)restartGame:(id)sender;
 
 
 - (IBAction)btn33:(id)sender;
