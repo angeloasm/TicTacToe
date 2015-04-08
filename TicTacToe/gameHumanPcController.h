@@ -10,6 +10,10 @@
 @import Foundation;
 
 @interface gameHumanPcController : UIViewController
+
+/**
+ * Declare the button view of matrix 
+ */
 @property (weak, nonatomic) IBOutlet UIButton *btnView11;
 @property (weak, nonatomic) IBOutlet UIButton *btnView12;
 @property (weak, nonatomic) IBOutlet UIButton *btnView13;
@@ -23,7 +27,9 @@
 
 
 
-
+/**
+ * Declare action for all btn contains in the matrix.
+ */
 
 - (IBAction)btn11:(id)sender;
 - (IBAction)btn12:(id)sender;
@@ -34,6 +40,12 @@
 - (IBAction)btn31:(id)sender;
 - (IBAction)btn32:(id)sender;
 - (IBAction)btn33:(id)sender;
+
+/**
+ * Declare methods with you can control the pc turn
+ */
+
+-(void)choosePosition;
 
 
 
