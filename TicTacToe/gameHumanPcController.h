@@ -11,6 +11,16 @@
 
 @interface gameHumanPcController : UIViewController
 
+
+@property (retain, nonatomic) NSArray  *arrayOfSymbol;
+@property (retain, nonatomic) NSArray  *arrayOfPlayers;
+@property int player;
+@property int turn;
+
+
+@property (weak, nonatomic) IBOutlet UILabel *lblInfo;
+
+
 /**
  * Declare the button view of matrix 
  */

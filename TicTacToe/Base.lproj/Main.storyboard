@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Title-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
                 <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
@@ -58,9 +58,9 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lKa-GR-DDZ">
-                                <rect key="frame" x="40" y="38" width="240" height="21"/>
+                                <rect key="frame" x="40" y="58" width="240" height="27"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="21"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </label>
@@ -156,10 +156,21 @@
                                 <rect key="frame" x="40" y="121" width="240" height="220"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Jj8-Nk-c2k">
+                                <rect key="frame" x="16" y="20" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Esci">
+                                    <color key="titleColor" red="1" green="0.84944837436960452" blue="0.40456809161859675" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="yBK-On-DH2" kind="modal" id="6vx-e6-ieo"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.39328463866607244" green="0.36790036144152272" blue="0.32538624212180195" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="4Vj-0w-i8I"/>
+                    <navigationItem key="navigationItem" title="Title" id="h7G-5V-8wu"/>
                     <connections>
                         <outlet property="btnView11" destination="TMM-uv-AKG" id="dzT-ED-oaT"/>
                         <outlet property="btnView12" destination="Hzv-ZI-vdz" id="UtP-H1-vqF"/>
@@ -239,16 +250,6 @@
                                     <action selector="btn23:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="feg-Gh-vHj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Uz-17-h7l">
-                                <rect key="frame" x="42" y="294" width="70" height="70"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="btn31:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="GzY-T9-u8L"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="T5X-in-sf5">
                                 <rect key="frame" x="215" y="294" width="70" height="70"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -286,9 +287,20 @@
                                     <action selector="btn32:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="cWz-wy-FNv"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="9Uz-17-h7l">
+                                <rect key="frame" x="42" y="294" width="70" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="btn31:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="GzY-T9-u8L"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.31764705882352939" green="0.29803921568627451" blue="0.25882352941176473" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
+                    <value key="contentSizeForViewInPopover" type="size" width="320" height="555"/>
                     <connections>
                         <outlet property="btnView11" destination="GVm-yW-ICE" id="Z4U-Ns-VKB"/>
                         <outlet property="btnView12" destination="8TF-b3-idp" id="Pos-H0-psw"/>
@@ -299,6 +311,7 @@
                         <outlet property="btnView31" destination="9Uz-17-h7l" id="tFI-w0-obv"/>
                         <outlet property="btnView32" destination="kNx-1x-yvQ" id="Nhg-mN-V8B"/>
                         <outlet property="btnView33" destination="T5X-in-sf5" id="3bR-3R-eKM"/>
+                        <outlet property="lblInfo" destination="5CH-4S-g4H" id="XLL-Nb-KRW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15r-mz-tP3" userLabel="First Responder" sceneMemberID="firstResponder"/>

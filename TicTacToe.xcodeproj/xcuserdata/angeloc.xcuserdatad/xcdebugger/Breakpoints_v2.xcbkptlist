@@ -56,11 +56,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TicTacToe/ViewController.m"
-            timestampString = "450101625.790441"
+            timestampString = "450389520.305034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "180"
-            endingLineNumber = "180"
+            startingLineNumber = "275"
+            endingLineNumber = "275"
             landmarkName = "-changeValueOfTurn"
             landmarkType = "5">
          </BreakpointContent>
@@ -103,12 +103,28 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TicTacToe/ViewController.m"
-            timestampString = "450101625.790441"
+            filePath = "TicTacToe/gameHumanPcController.m"
+            timestampString = "450189217.280925"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "158"
-            endingLineNumber = "158"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "-choosePosition"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TicTacToe/ViewController.m"
+            timestampString = "450389520.305034"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "212"
+            endingLineNumber = "212"
             landmarkName = "-whoWin"
             landmarkType = "5">
          </BreakpointContent>

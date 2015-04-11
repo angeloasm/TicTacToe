@@ -108,58 +108,139 @@ static int matrix[3][3];
     // Dispose of any resources that can be recreated.
 }
 
-
-- (int) whoWin {
-    int i,j;
-    int diag=0;
-    int oriz=0;
-    int vert=0;
-    int diaginf=0;
+-(BOOL)verifyOrizontalWin:(int)row{
     
-    /*
-     Controllo se sta vincendo verticalmente col fisso e row variabile
-     **/
-    for (i=0; i<3; i++) {
-        
-        /*
-        id elem = [_myArrayTic objectAtIndex:i];
-        NSString *item = (NSString*)elem;
-        NSLog(@"whoWin said: %@",item);
-         */
-        
-        int value = matrix[i][i];
-        int secDiag = 2;
-        if(value!=0){
-            NSLog(@"Controllo il valore della matrice %i",value);
-        for (j=0; j<3; j++) {
-            
-            if(matrix[i][j]==value && matrix[i][j]!=0){
-                NSLog(@"value of matrix[i][j] %i", matrix[i][j]);
-                vert++;
-            }
-            if(matrix[j][i]==value && matrix[i][j]!=0){
-                oriz++;
-            }
-            if (matrix[j][j]==value && matrix[j][j]!=0) {
-                diag++;
-            }
-            if(matrix[secDiag][j]==value && matrix[secDiag][j]!=0){
-                diaginf++;
-            }
-            secDiag--;
+    int win=0;
+    int col;
+    int valueOfPlayer = _turnRandom+1;
+    for(col=0;col<3;col++){
+        if(matrix[row][col]==valueOfPlayer){
+            win++;
         }
-        }
-        NSLog(@"vert=%i oriz=%i diag=%i diaginf=%i", vert, oriz, diag,diaginf);
-        if(vert == 3 || oriz == 3 || diaginf ==3 || diag==3){
-            return value;
-        }
-        vert=0;
-        oriz=0;
-        diag=0;
-        diaginf=0;
-        
         
     }
+    if(win==3){
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
+-(BOOL) verifyVerticalWin:(int)row
+{
+    int win=0;
+    
+    int valueOfPlayer = _turnRandom+1;
+    int j=0;
+    for(j=0;j<3;j++){
+        if(matrix[j][row]==valueOfPlayer){
+            win++;
+        }
+    }
+    if(win==3){
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
+-(BOOL) verifyDiagonalWin:(int)row
+{
+    int diag=0;
+    int d = 0;
+    int valueOfPlayer = _turnRandom+1;
+    for(d=0;d<3;d++){
+        if(matrix[d][d]==valueOfPlayer){
+            diag++;
+        }
+    }
+    
+    if(diag==3){
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
+-(BOOL)verifyDiagInfWin{
+    
+    int diagInf=0;
+    int d=2;
+    int r=0;
+    int valueOfPlayer=_turnRandom+1;
+    for(r=0;r<3;r++){
+        if(matrix[d][r]==valueOfPlayer){
+            diagInf++;
+            d--;
+        }else{
+            return NO;
+        }
+    }
+    if(diagInf ==3){
+        return YES;
+    }else{
+        return NO;
+    }
+   
+}
+
+- (int) whoWin {
+    
+    NSLog(@"Turn: %i",_turnRandom+1);
+    int valueOfPlayer = _turnRandom+1;
+    NSLog(@"matrice:");
+    
+    NSLog(@"%i %i %i",matrix[0][0],matrix[0][1],matrix[0][2]);
+    NSLog(@"%i %i %i",matrix[1][0],matrix[1][1],matrix[1][2]);
+    NSLog(@"%i %i %i",matrix[2][0],matrix[2][1],matrix[2][2]);
+    int row;
+    int col;
+    
+    
+    for(row=0;row<3;row++){
+        
+        
+        
+        
+        for(col=0;col<3;col++){
+            if(matrix[row][col]!=0){
+                
+               
+                
+                if([self verifyVerticalWin:row]){
+                    return valueOfPlayer;
+                }
+                if(row==col){
+                    if([self verifyDiagonalWin:row]){
+                        return valueOfPlayer;
+                    }
+                }
+               
+                    if([self verifyDiagInfWin]){
+                        return valueOfPlayer;
+                    }
+                if([self verifyOrizontalWin:row]){
+                    return valueOfPlayer;
+                }
+                
+            }
+            
+            
+            
+            
+            
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
     
     return -1;
 }
@@ -171,7 +252,21 @@ static int matrix[3][3];
  
  */
 - (void)changeValueOfTurn {
-
+   
+    int winnerid = [self whoWin];
+    if(winnerid!=-1){
+        _txtStr = @"Vince il giocatore con la ";
+        if(winnerid==2){
+            _turnRandom=0;
+            _textTurn.text = [_txtStr stringByAppendingString:@"x"];
+        }else{
+            _turnRandom=1;
+            _textTurn.text = [_txtStr stringByAppendingString:@"o"];
+        }
+        
+    }
+     NSLog(@"Turn:%i",_turnRandom);
+    if(winnerid==-1){
     if(_turnRandom == 1){
         _turnRandom=0;
         _txtStr = @"Gioca il giocatore con la ";
@@ -185,16 +280,8 @@ static int matrix[3][3];
         NSString *i = (NSString *)dictionary;
         _textTurn.text = [_txtStr stringByAppendingString:i];
     }
-    int winnerid = [self whoWin];
-    if(winnerid!=-1){
-        _txtStr = @"Vince il giocatore con la ";
-        if(winnerid==2){
-            _textTurn.text = [_txtStr stringByAppendingString:@"x"];
-        }else{
-            _textTurn.text = [_txtStr stringByAppendingString:@"o"];
-        }
-        
     }
+    
 }
 
 /**
