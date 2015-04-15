@@ -3,7 +3,7 @@
 //  TicTacToe
 //
 //  Created by Angelo C on 07/04/15.
-//  Copyright (c) 2015 Angelo C. All rights reserved.
+//  Copyright (c) 2015 (axc111) Angelo Carraggi.  All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
@@ -16,6 +16,7 @@
 @property (retain, nonatomic) NSArray  *arrayOfPlayers;
 @property int player;
 @property int turn;
+@property (retain, nonatomic) NSString *txtStr;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *lblInfo;

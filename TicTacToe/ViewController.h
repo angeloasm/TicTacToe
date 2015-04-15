@@ -3,11 +3,12 @@
 //  TicTacToe
 //
 //  Created by Angelo C on 17/03/15.
-//  Copyright (c) 2015 Angelo C. All rights reserved.
+//  Copyright (c) 2015 (axc111) Angelo Carraggi.  All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 @import Foundation;
+#import "gameEngine.h"
 
 @interface ViewController : UIViewController
 @property (retain, nonatomic) NSString *val;
@@ -16,10 +17,9 @@
 @property (retain, nonatomic) NSArray  * myArray2;
 @property (retain, nonatomic) NSMutableArray  * myArrayTic;
 @property (retain, nonatomic) NSString *i;
-@property int turnRandom;
 @property (retain, nonatomic) NSString *txtStr;
 @property (weak, nonatomic) IBOutlet UILabel *textTurn;
-
+@property (retain,nonatomic) gameEngine *gE;
 @property (weak, nonatomic) IBOutlet UIButton *btnView12;
 @property (weak, nonatomic) IBOutlet UIButton *btnView13;
 @property (weak, nonatomic) IBOutlet UIButton *btnView21;
@@ -48,6 +48,6 @@
 
 - (void)changeValueOfTurn;
 - (BOOL)isEmpty:(int)index;
--(int)whoWin;
+
 
 @end

@@ -3,7 +3,7 @@
 //  TicTacToe
 //
 //  Created by angeloasm on 17/03/15.
-//  Copyright (c) 2015 Angelo C. All rights reserved.
+//  Copyright (c) 2015 (axc111) Angelo Carraggi.  All rights reserved.
 //
 
 #import "ViewController.h"
@@ -48,17 +48,16 @@ static int matrix[3][3];
     // This is a call of function for restart the matrix.
     [self resetMatrix];
     //Assign a new pseudo-rand number for the turn of the user.
-    _turnRandom=arc4random() % 2;
+   // _turnRandom=arc4random() % 2;
     //Log of new number turn.
-    NSLog(@"%i",_turnRandom);
-    _val =@"x";
-    _user=@"x";
+    //NSLog(@"%i",_turnRandom);
+    
     //This string is set for visualize at users turn.
-    _txtStr = @"Gioca il giocatore con la ";
-    id dictionary = [_myArray2 objectAtIndex:_turnRandom];
-    NSString *i = (NSString *)dictionary;
+    
+    //id dictionary = [_myArray2 objectAtIndex:_turnRandom];
+   // NSString *i = (NSString *)dictionary;
     //Obtain the symbol assigned for the user we can start the turn.
-    _textTurn.text = [_txtStr stringByAppendingString:i];
+    //_textTurn.text = [_txtStr stringByAppendingString:i];
     //Reset all images of buttun view inside the matrix view.
     [_btnView33 setImage:nil forState:UIControlStateNormal];
     [_btnView32 setImage:nil forState:UIControlStateNormal];
@@ -88,17 +87,12 @@ static int matrix[3][3];
 
 
 - (void)viewDidLoad {
-    _myArray2 = [NSArray arrayWithObjects:@"x",@"o", nil];
-    _myArrayTic = [NSMutableArray arrayWithObjects:@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",@"0",nil];
+    
     [super viewDidLoad];
-    _turnRandom=arc4random() % 2;
-    NSLog(@"%i",_turnRandom);
-    _val =@"x";
-    _user=@"x";
-    _txtStr = @"Gioca il giocatore con la ";
-    id dictionary = [_myArray2 objectAtIndex:_turnRandom];
-    NSString *i = (NSString *)dictionary;
-    _textTurn.text = [_txtStr stringByAppendingString:i];
+    _gE = [[gameEngine alloc]init];
+    [_gE startMatch];
+    NSString *s = [_gE getStringTurn];
+    _textTurn.text = s;
     
     // Do any additional setup after loading the view, typically from a nib.
 }
@@ -108,142 +102,7 @@ static int matrix[3][3];
     // Dispose of any resources that can be recreated.
 }
 
--(BOOL)verifyOrizontalWin:(int)row{
-    
-    int win=0;
-    int col;
-    int valueOfPlayer = _turnRandom+1;
-    for(col=0;col<3;col++){
-        if(matrix[row][col]==valueOfPlayer){
-            win++;
-        }
-        
-    }
-    if(win==3){
-        return YES;
-    }else{
-        return NO;
-    }
-    
-}
 
--(BOOL) verifyVerticalWin:(int)row
-{
-    int win=0;
-    
-    int valueOfPlayer = _turnRandom+1;
-    int j=0;
-    for(j=0;j<3;j++){
-        if(matrix[j][row]==valueOfPlayer){
-            win++;
-        }
-    }
-    if(win==3){
-        return YES;
-    }else{
-        return NO;
-    }
-    
-}
-
--(BOOL) verifyDiagonalWin:(int)row
-{
-    int diag=0;
-    int d = 0;
-    int valueOfPlayer = _turnRandom+1;
-    for(d=0;d<3;d++){
-        if(matrix[d][d]==valueOfPlayer){
-            diag++;
-        }
-    }
-    
-    if(diag==3){
-        return YES;
-    }else{
-        return NO;
-    }
-    
-}
-
--(BOOL)verifyDiagInfWin{
-    
-    int diagInf=0;
-    int d=2;
-    int r=0;
-    int valueOfPlayer=_turnRandom+1;
-    for(r=0;r<3;r++){
-        if(matrix[d][r]==valueOfPlayer){
-            diagInf++;
-            d--;
-        }else{
-            return NO;
-        }
-    }
-    if(diagInf ==3){
-        return YES;
-    }else{
-        return NO;
-    }
-   
-}
-
-- (int) whoWin {
-    
-    NSLog(@"Turn: %i",_turnRandom+1);
-    int valueOfPlayer = _turnRandom+1;
-    NSLog(@"matrice:");
-    
-    NSLog(@"%i %i %i",matrix[0][0],matrix[0][1],matrix[0][2]);
-    NSLog(@"%i %i %i",matrix[1][0],matrix[1][1],matrix[1][2]);
-    NSLog(@"%i %i %i",matrix[2][0],matrix[2][1],matrix[2][2]);
-    int row;
-    int col;
-    
-    
-    for(row=0;row<3;row++){
-        
-        
-        
-        
-        for(col=0;col<3;col++){
-            if(matrix[row][col]!=0){
-                
-               
-                
-                if([self verifyVerticalWin:row]){
-                    return valueOfPlayer;
-                }
-                if(row==col){
-                    if([self verifyDiagonalWin:row]){
-                        return valueOfPlayer;
-                    }
-                }
-               
-                    if([self verifyDiagInfWin]){
-                        return valueOfPlayer;
-                    }
-                if([self verifyOrizontalWin:row]){
-                    return valueOfPlayer;
-                }
-                
-            }
-            
-            
-            
-            
-            
-        }
-        
-    }
-    
-    
-    
-    
-    
-    
-    
-    return -1;
-}
 
 
 /**
@@ -252,7 +111,7 @@ static int matrix[3][3];
  
  */
 - (void)changeValueOfTurn {
-   
+   /*
     int winnerid = [self whoWin];
     if(winnerid!=-1){
         _txtStr = @"Vince il giocatore con la ";
@@ -281,7 +140,7 @@ static int matrix[3][3];
         _textTurn.text = [_txtStr stringByAppendingString:i];
     }
     }
-    
+    */
 }
 
 /**
@@ -306,13 +165,14 @@ static int matrix[3][3];
     /*
      Riadattamento del codice alla matrice int[3][3]
      */
-    
+  /*
     if(matrix[row][col]==0){
         matrix[row][col]=_turnRandom+1;
         [self changeValueOfTurn];
     }
     return YES;
-    
+    */
+    return YES;
 
 }
 
@@ -325,7 +185,7 @@ static int matrix[3][3];
 
 - (IBAction)btn33:(id)sender {
     // SE si verifica che la cella in questione ( 3:3 ) è piena non fare nulla!
-    if([self arraySign:2 and:2]){
+   /*if([self arraySign:2 and:2]){
         if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
@@ -340,12 +200,12 @@ static int matrix[3][3];
             }
         }
     }
-
+*/
 }
 
 - (IBAction)btn32:(id)sender {
     // SE si verifica che la cella in questione ( 3:2 ) è piena non fare nulla!
-    if([self arraySign:2 and:1]){
+    /*if([self arraySign:2 and:1]){
         if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
@@ -360,12 +220,12 @@ static int matrix[3][3];
             }
         }
     }
-
+*/
 }
 
 - (IBAction)btn31:(id)sender {
     // SE si verifica che la cella in questione ( 3:1 ) è piena non fare nulla!
-    if([self arraySign:2 and:0]){
+   /* if([self arraySign:2 and:0]){
         if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
@@ -380,13 +240,14 @@ static int matrix[3][3];
             }
         }
     }
+    */
 }
 
 
 
 - (IBAction)btn23:(id)sender {
     // SE si verifica che la cella in questione ( 2:3 ) è piena non fare nulla!
-    if([self arraySign:1 and: 2]){
+   /* if([self arraySign:1 and: 2]){
         if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
@@ -400,12 +261,12 @@ static int matrix[3][3];
                 
             }
         }
-    }
+    }*/
 }
 
 - (IBAction)btn22:(id)sender {
     // SE si verifica che la cella in questione ( 2:2 ) è piena non fare nulla!
-    if([self arraySign:1 and:1]){
+   /* if([self arraySign:1 and:1]){
         if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
@@ -418,13 +279,17 @@ static int matrix[3][3];
                 [_btnView22 setImage:img forState:UIControlStateNormal];
                 
             }
+            
         }
     }
+    [UIView animateWithDuration:2 animations:^(){
+        _btnView22.alpha =0.3;
+    }];*/
 }
 
 - (IBAction)btn21:(id)sender {
     // SE si verifica che la cella in questione ( 2:1 ) è piena non fare nulla!
-    if([self arraySign:1 and:0]){
+  /* if([self arraySign:1 and:0]){
         if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
@@ -439,13 +304,13 @@ static int matrix[3][3];
             }
         }
     }
-
+*/
 }
 
 
 - (IBAction)btn13:(id)sender {
     // SE si verifica che la cella in questione ( 1:3 ) è piena non fare nulla!
-    if([self arraySign:0 and:2]){
+   /* if([self arraySign:0 and:2]){
         if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
@@ -459,14 +324,14 @@ static int matrix[3][3];
                 
             }
         }
-    }
+    }*/
 
 }
 
 //Caso in cui 
 - (IBAction)btn12:(id)sender {
     // SE si verifica che la cella in questione ( 1:2 ) è piena non fare nulla!
-    if([self arraySign:0 and:1]){
+    /*if([self arraySign:0 and:1]){
         if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
@@ -480,7 +345,7 @@ static int matrix[3][3];
                 
             }
         }
-    }
+    }*/
 }
 
 /*
@@ -490,7 +355,7 @@ static int matrix[3][3];
 - (IBAction)btn11:(id)sender {
     
     // SE si verifica che la cella in questione ( 1:1 ) è piena non fare nulla!
-    if([self arraySign:0 and:0]){
+   /* if([self arraySign:0 and:0]){
         if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
             
             UIImage *img = [UIImage imageNamed:@"o.png"];
@@ -507,7 +372,7 @@ static int matrix[3][3];
     }else{
 
     }
-    
+    */
 }
 
 

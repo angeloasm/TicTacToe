@@ -3,7 +3,7 @@
 //  TicTacToe
 //
 //  Created by Angelo C on 07/04/15.
-//  Copyright (c) 2015 Angelo C. All rights reserved.
+//  Copyright (c) 2015 (axc111) Angelo Carraggi.  All rights reserved.
 //
 
 #import "gameHumanPcController.h"
@@ -14,6 +14,88 @@
 @implementation gameHumanPcController
 
 static int matrix[3][3];
+static int turnPC;
+
+-(BOOL)verifyOrizontalWin:(int)row{
+    
+    int win=0;
+    int col;
+    int valueOfPlayer = _turn+1;
+    for(col=0;col<3;col++){
+        if(matrix[row][col]==valueOfPlayer){
+            win++;
+        }
+        
+    }
+    if(win==3){
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
+-(BOOL) verifyVerticalWin:(int)row
+{
+    int win=0;
+    
+    int valueOfPlayer = _turn+1;
+    int j=0;
+    for(j=0;j<3;j++){
+        if(matrix[j][row]==valueOfPlayer){
+            win++;
+        }
+    }
+    if(win==3){
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
+-(BOOL) verifyDiagonalWin:(int)row
+{
+    int diag=0;
+    int d = 0;
+    int valueOfPlayer = _turn+1;
+    for(d=0;d<3;d++){
+        if(matrix[d][d]==valueOfPlayer){
+            diag++;
+        }
+    }
+    
+    if(diag==3){
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
+-(BOOL)verifyDiagInfWin{
+    
+    int diagInf=0;
+    int d=2;
+    int r=0;
+    int valueOfPlayer=_turn+1;
+    for(r=0;r<3;r++){
+        if(matrix[d][r]==valueOfPlayer){
+            diagInf++;
+            d--;
+        }else{
+            return NO;
+        }
+    }
+    if(diagInf ==3){
+        return YES;
+    }else{
+        return NO;
+    }
+    
+}
+
+
 
 -(void)matchStart {
     int row;
@@ -30,7 +112,15 @@ static int matrix[3][3];
     id dicPlayer = [_arrayOfPlayers objectAtIndex:_player];
     id dicTurn = [_arrayOfSymbol objectAtIndex:_turn];
     _lblInfo.text = [_lblInfo.text stringByAppendingString:(NSString *)dicPlayer];
-    
+    if([[_arrayOfPlayers objectAtIndex:_player] isEqualToString:@"pc"]){
+        turnPC =_turn;
+    }else{
+        if(_turn == 0){
+            turnPC =1;
+        }else{
+            turnPC=0;
+        }
+    }
 
 }
 
@@ -38,7 +128,7 @@ static int matrix[3][3];
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self matchStart];
-    [self choosePosition];
+    //[self choosePosition];
     
 }
 
@@ -51,46 +141,199 @@ static int matrix[3][3];
  */
 - (IBAction)btn11:(id)sender {
     //This action is for the cell of matrix row:1 and col:1
-    NSLog(@"ciao mondo!");
+  //  NSLog(@"ciao mondo!");
+    if([self arraySign:0 and:0]){
+        if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"o"]){
+            
+            UIImage *img = [UIImage imageNamed:@"o.png"];
+            [_btnView11 setImage:img forState:UIControlStateNormal];
+            
+            
+        }else{
+            if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"x"]){
+                UIImage *img = [UIImage imageNamed:@"x.png"];
+                [_btnView11 setImage:img forState:UIControlStateNormal];
+                
+            }
+        }
+    }else{
+        
+    }
 }
 
 - (IBAction)btn12:(id)sender {
     //This action is for the cell of matrix row:1 and col:2
-
+    if([self arraySign:0 and:1]){
+        if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"o"]){
+            
+            UIImage *img = [UIImage imageNamed:@"o.png"];
+            [_btnView12 setImage:img forState:UIControlStateNormal];
+            
+            
+        }else{
+            if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"x"]){
+                UIImage *img = [UIImage imageNamed:@"x.png"];
+                [_btnView12 setImage:img forState:UIControlStateNormal];
+                
+            }
+        }
+    }else{
+        
+    }
 }
 
 - (IBAction)btn13:(id)sender {
+    
     //This action is for the cell of matrix row:1 and col:3
+    if([self arraySign:0 and:2]){
+        if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"o"]){
+            
+            UIImage *img = [UIImage imageNamed:@"o.png"];
+            [_btnView13 setImage:img forState:UIControlStateNormal];
+            
+            
+        }else{
+            if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"x"]){
+                UIImage *img = [UIImage imageNamed:@"x.png"];
+                [_btnView13 setImage:img forState:UIControlStateNormal];
+                
+            }
+        }
+    }else{
+        
+    }
 
 }
 
 - (IBAction)btn21:(id)sender {
     //This action is for the cell of matrix row:2 and col:1
+    if([self arraySign:1 and:0]){
+        if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"o"]){
+            
+            UIImage *img = [UIImage imageNamed:@"o.png"];
+            [_btnView21 setImage:img forState:UIControlStateNormal];
+            
+            
+        }else{
+            if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"x"]){
+                UIImage *img = [UIImage imageNamed:@"x.png"];
+                [_btnView21 setImage:img forState:UIControlStateNormal];
+                
+            }
+        }
+    }else{
+        
+    }
 
 }
 
 - (IBAction)btn22:(id)sender {
     //This action is for the cell of matrix row:2 and col:2
+    if([self arraySign:1 and:1]){
+        if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"o"]){
+            
+            UIImage *img = [UIImage imageNamed:@"o.png"];
+            [_btnView22 setImage:img forState:UIControlStateNormal];
+            
+            
+        }else{
+            if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"x"]){
+                UIImage *img = [UIImage imageNamed:@"x.png"];
+                [_btnView22 setImage:img forState:UIControlStateNormal];
+                
+            }
+        }
+    }else{
+        
+    }
 
 }
 
 - (IBAction)btn23:(id)sender {
     //This action is for the cell of matrix row:2 and col:3
+    if([self arraySign:1 and:2]){
+        if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"o"]){
+            
+            UIImage *img = [UIImage imageNamed:@"o.png"];
+            [_btnView23 setImage:img forState:UIControlStateNormal];
+            
+            
+        }else{
+            if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"x"]){
+                UIImage *img = [UIImage imageNamed:@"x.png"];
+                [_btnView23 setImage:img forState:UIControlStateNormal];
+                
+            }
+        }
+    }else{
+        
+    }
 
 }
 
 - (IBAction)btn31:(id)sender {
     //This action is for the cell of matrix row:3 and col:1
+    if([self arraySign:2 and:0]){
+        if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"o"]){
+            
+            UIImage *img = [UIImage imageNamed:@"o.png"];
+            [_btnView31 setImage:img forState:UIControlStateNormal];
+            
+            
+        }else{
+            if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"x"]){
+                UIImage *img = [UIImage imageNamed:@"x.png"];
+                [_btnView31 setImage:img forState:UIControlStateNormal];
+                
+            }
+        }
+    }else{
+        
+    }
 
 }
 
 - (IBAction)btn32:(id)sender {
     //This action is for the cell of matrix row:3 and col:2
+    if([self arraySign:2 and:1]){
+        if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"o"]){
+            
+            UIImage *img = [UIImage imageNamed:@"o.png"];
+            [_btnView32 setImage:img forState:UIControlStateNormal];
+            
+            
+        }else{
+            if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"x"]){
+                UIImage *img = [UIImage imageNamed:@"x.png"];
+                [_btnView32 setImage:img forState:UIControlStateNormal];
+                
+            }
+        }
+    }else{
+        
+    }
 
 }
 
 - (IBAction)btn33:(id)sender {
     //This action is for the cell of matrix row:3 and col:3
+    if([self arraySign:2 and:2]){
+        if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"o"]){
+            
+            UIImage *img = [UIImage imageNamed:@"o.png"];
+            [_btnView33 setImage:img forState:UIControlStateNormal];
+            
+            
+        }else{
+            if([[_arrayOfSymbol objectAtIndex: _turn] isEqualToString:@"x"]){
+                UIImage *img = [UIImage imageNamed:@"x.png"];
+                [_btnView33 setImage:img forState:UIControlStateNormal];
+                
+            }
+        }
+    }else{
+        
+    }
 
 }
 
@@ -117,11 +360,45 @@ static int matrix[3][3];
     }
     
     int cell = rand()%x;
-    NSLog(@"random cell: %i",cell);
+    //NSLog(@"random cell: %i",cell);
     int r = round(arr[cell]);
-    int c = arr[cell]-r;
+    int c = (arr[cell]-r)*10;
+   // NSLog(@"cell: %f r: %i c: %i",arr[cell],r,c);
     id a;
-    [self btn11:a];
+    if(r==0){
+        if(c==0){
+            [self btn11:a];
+        }
+        if(c==1){
+            [self btn12:a];
+        }
+        if(c==2){
+            [self btn13:a];
+        }
+    }
+    if(r==1){
+        if(c==0){
+            [self btn21:a];
+        }
+        if(c==1){
+            [self btn22:a];
+        }
+        if(c==2){
+            [self btn23:a];
+        }
+    }
+    if(r==2){
+        if(c==0){
+            [self btn31:a];
+        }
+        if(c==1){
+            [self btn32:a];
+        }
+        if(c==2){
+            [self btn33:a];
+        }
+    }
+    
     
     
     
@@ -135,8 +412,8 @@ static int matrix[3][3];
     int vert=0;
     int diaginf=0;
     
-    /*
-     Controllo se sta vincendo verticalmente col fisso e row variabile
+    /**
+     * Controllo se sta vincendo verticalmente col fisso e row variabile
      **/
     for (i=0; i<3; i++) {
         
@@ -188,17 +465,54 @@ static int matrix[3][3];
     /*
      Riadattamento del codice alla matrice int[3][3]
      */
-    
+    if(_turn == turnPC){
+        NSLog(@"E' il turno del pc");
+    }
     if(matrix[row][col]==0){
         matrix[row][col]=_turn+1;
-     //   [self changeValueOfTurn];
+        [self changeValueOfTurn];
     }
     return YES;
     
 }
 
 - (void)changeValueOfTurn {
-    
+    int winnerid = [self whoWin];
+    if(winnerid!=-1){
+        _txtStr = @"Vince il giocatore con la ";
+        if(winnerid==2){
+            _turn=0;
+            _lblInfo.text = [_txtStr stringByAppendingString:@"x"];
+        }else{
+            _turn=1;
+            _lblInfo.text = [_txtStr stringByAppendingString:@"o"];
+        }
+        
+    }
+    NSLog(@"Turn:%i",_turn);
+    if(winnerid==-1){
+        if(_turn == turnPC){
+            
+                [self choosePosition];
+            
+            _txtStr = @"Gioca il giocatore con la ";
+            id dictionary = [_arrayOfSymbol objectAtIndex:_turn+1];
+            NSString *i = (NSString *)dictionary;
+            _lblInfo.text = [_txtStr stringByAppendingString:i];
+            _turn=0;
+            
+        }else{
+            _turn++;
+            
+            
+            _txtStr = @"Gioca il giocatore con la ";
+            id dictionary = [_arrayOfSymbol objectAtIndex:_turn-1];
+            NSString *i = (NSString *)dictionary;
+            _lblInfo.text = [_txtStr stringByAppendingString:i];
+            
+        }
+    }
+
     
 }
 
