@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		97A5CB6A1AD40C2A00A02803 /* gameHumanPcController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97A5CB691AD40C2A00A02803 /* gameHumanPcController.m */; };
 		97B487001ADE8C3A005CE012 /* gameEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B486FF1ADE8C3A005CE012 /* gameEngine.m */; };
+		97B487041ADEB2FA005CE012 /* gameEnginePC.m in Sources */ = {isa = PBXBuildFile; fileRef = 97B487031ADEB2FA005CE012 /* gameEnginePC.m */; };
 		97C06E5D1AD3E9C8005C00AC /* home-btn1vs1.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C06E5C1AD3E9C8005C00AC /* home-btn1vs1.png */; };
 		97C06E5F1AD3EA49005C00AC /* btn1vsPC.png in Resources */ = {isa = PBXBuildFile; fileRef = 97C06E5E1AD3EA49005C00AC /* btn1vsPC.png */; };
 		97C5AA4F1AB8485000123F90 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97C5AA4E1AB8485000123F90 /* main.m */; };
@@ -40,6 +41,8 @@
 		97B486FF1ADE8C3A005CE012 /* gameEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameEngine.m; sourceTree = "<group>"; };
 		97B487011ADE8C61005CE012 /* gameEngine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gameEngine.h; sourceTree = "<group>"; };
 		97B487021ADE91BB005CE012 /* configGame.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = configGame.h; sourceTree = "<group>"; };
+		97B487031ADEB2FA005CE012 /* gameEnginePC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = gameEnginePC.m; sourceTree = "<group>"; };
+		97B487051ADEB308005CE012 /* gameEnginePC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = gameEnginePC.h; sourceTree = "<group>"; };
 		97C06E5C1AD3E9C8005C00AC /* home-btn1vs1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "home-btn1vs1.png"; path = "../../Pictures/home-btn1vs1.png"; sourceTree = "<group>"; };
 		97C06E5E1AD3EA49005C00AC /* btn1vsPC.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = btn1vsPC.png; path = ../../Pictures/btn1vsPC.png; sourceTree = "<group>"; };
 		97C5AA491AB8485000123F90 /* TicTacToe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TicTacToe.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +87,8 @@
 			children = (
 				97B486FF1ADE8C3A005CE012 /* gameEngine.m */,
 				97B487011ADE8C61005CE012 /* gameEngine.h */,
+				97B487031ADEB2FA005CE012 /* gameEnginePC.m */,
+				97B487051ADEB308005CE012 /* gameEnginePC.h */,
 			);
 			name = GameController;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 			files = (
 				97C5AA551AB8485000123F90 /* ViewController.m in Sources */,
 				97C5AA521AB8485000123F90 /* AppDelegate.m in Sources */,
+				97B487041ADEB2FA005CE012 /* gameEnginePC.m in Sources */,
 				97C5AA4F1AB8485000123F90 /* main.m in Sources */,
 				97A5CB6A1AD40C2A00A02803 /* gameHumanPcController.m in Sources */,
 				97B487001ADE8C3A005CE012 /* gameEngine.m in Sources */,

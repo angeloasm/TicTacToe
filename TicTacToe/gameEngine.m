@@ -18,7 +18,6 @@
  * IS BASED FOR THIS STRUCTURE.
  */
 static int matrix[ROW][COL];
-
 /**
  * THIS METHODS IS CALLED IF THE VIEW CONTROLLER WOULD KNOW WHICH ARE THE NEXT PLAYER'S TURN.
  * WITH THIS FUNCTION THE SYSTEM GIVE TO VIEW CONTROLLER CLASS THE COMPLETE STRING.
@@ -315,5 +314,9 @@ static int matrix[ROW][COL];
     return NO;
 }
 
+-(int)getRandomTurnValue
+{
+    return _turnRandom;
+}
 
 @end

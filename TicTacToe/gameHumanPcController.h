@@ -7,16 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "gameEnginePC.h"
 @import Foundation;
 
 @interface gameHumanPcController : UIViewController
 
 
-@property (retain, nonatomic) NSArray  *arrayOfSymbol;
-@property (retain, nonatomic) NSArray  *arrayOfPlayers;
-@property int player;
-@property int turn;
-@property (retain, nonatomic) NSString *txtStr;
 
 
 @property (weak, nonatomic) IBOutlet UILabel *lblInfo;
@@ -35,12 +31,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnView31;
 @property (weak, nonatomic) IBOutlet UIButton *btnView32;
 @property (weak, nonatomic) IBOutlet UIButton *btnView33;
-
+@property (retain,nonatomic) gameEnginePC *gEPC;
 
 
 /**
  * Declare action for all btn contains in the matrix.
  */
+
+- (IBAction)btnRestart:(id)sender;
 
 - (IBAction)btn11:(id)sender;
 - (IBAction)btn12:(id)sender;
@@ -57,7 +55,7 @@
  */
 
 -(void)choosePosition;
-
+-(void)signPosition;
 
 
 
