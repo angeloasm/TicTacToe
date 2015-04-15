@@ -76,6 +76,10 @@
     _textTurn.text = txt;
 }
 
+-(void)drawGame
+{
+    _textTurn.text = @"THE GAME ENDS DRAW";
+}
 
 - (IBAction)restartGame:(id)sender {
     [self restart];
@@ -95,7 +99,13 @@
         }
         int areWinner = [_gE changeValueOfTurn];
         if (areWinner == 0) {
-            [self updateTextTurn];
+            if ([_gE areThereFreePlaces]) {
+                [self updateTextTurn];
+            }else{
+                [self drawGame];
+            }
+            
+            
         }else{
             [self showWinner];
         }
@@ -115,7 +125,13 @@
         }
         int areWinner = [_gE changeValueOfTurn];
         if (areWinner == 0) {
-            [self updateTextTurn];
+            if ([_gE areThereFreePlaces]) {
+                [self updateTextTurn];
+            }else{
+                [self drawGame];
+            }
+            
+            
         }else{
             [self showWinner];
         }
@@ -135,7 +151,13 @@
         }
         int areWinner = [_gE changeValueOfTurn];
         if (areWinner == 0) {
-            [self updateTextTurn];
+            if ([_gE areThereFreePlaces]) {
+                [self updateTextTurn];
+            }else{
+                [self drawGame];
+            }
+            
+            
         }else{
             [self showWinner];
         }
@@ -155,7 +177,13 @@
         }
         int areWinner = [_gE changeValueOfTurn];
         if (areWinner == 0) {
-            [self updateTextTurn];
+            if ([_gE areThereFreePlaces]) {
+                [self updateTextTurn];
+            }else{
+                [self drawGame];
+            }
+            
+            
         }else{
             [self showWinner];
         }
@@ -175,7 +203,13 @@
         }
         int areWinner = [_gE changeValueOfTurn];
         if (areWinner == 0) {
-            [self updateTextTurn];
+            if ([_gE areThereFreePlaces]) {
+                [self updateTextTurn];
+            }else{
+                [self drawGame];
+            }
+            
+            
         }else{
             [self showWinner];
         }
@@ -195,7 +229,13 @@
         }
         int areWinner = [_gE changeValueOfTurn];
         if (areWinner == 0) {
-            [self updateTextTurn];
+            if ([_gE areThereFreePlaces]) {
+                [self updateTextTurn];
+            }else{
+                [self drawGame];
+            }
+            
+            
         }else{
             [self showWinner];
         }
@@ -215,10 +255,17 @@
         }
         int areWinner = [_gE changeValueOfTurn];
         if (areWinner == 0) {
-            [self updateTextTurn];
+            if ([_gE areThereFreePlaces]) {
+                [self updateTextTurn];
+            }else{
+                [self drawGame];
+            }
+            
+            
         }else{
             [self showWinner];
         }
+    
     }
 }
 
@@ -235,12 +282,18 @@
         }
         int areWinner = [_gE changeValueOfTurn];
         if (areWinner == 0) {
-            [self updateTextTurn];
+            if ([_gE areThereFreePlaces]) {
+                [self updateTextTurn];
+            }else{
+                [self drawGame];
+            }
+            
+            
         }else{
             [self showWinner];
         }
-        
     }
+
 }
 
 /*
@@ -262,7 +315,13 @@
         int areWinner = [_gE changeValueOfTurn];
         NSLog(@"are winner: %i",areWinner);
         if (areWinner == 0) {
-            [self updateTextTurn];
+            if ([_gE areThereFreePlaces]) {
+                 [self updateTextTurn];
+            }else{
+                [self drawGame];
+            }
+           
+            
         }else{
             [self showWinner];
         }

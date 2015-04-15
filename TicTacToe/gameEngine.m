@@ -11,16 +11,34 @@
 
 @implementation gameEngine
 
+/**
+ * THIS VARIABLE IS USED IN ALL PART OF THE CODE, IT'S THE BASE OF GAME, BECAUSE
+ * ALL SYMBOL IS PLACED INTO THIS MATRIX. 
+ * HOWEVER, THIS MATRIX IS THE BASE OF ALL CALCULATION OF THE GAME, ALL CONTROLS AND OTHER FUNCTION 
+ * IS BASED FOR THIS STRUCTURE.
+ */
 static int matrix[ROW][COL];
 
+/**
+ * THIS METHODS IS CALLED IF THE VIEW CONTROLLER WOULD KNOW WHICH ARE THE NEXT PLAYER'S TURN.
+ * WITH THIS FUNCTION THE SYSTEM GIVE TO VIEW CONTROLLER CLASS THE COMPLETE STRING.
+ * FOR EXAMPLE:
+ * IF IS THE TURN OF SYMBOL X -> getStringTurn RETURN "Player X"
+ */
 -(NSString *)getStringTurn
 {
+    //INITIALIZING THE BASE STRING USED FOR THE NSSTRING
     NSString *txt = @"Player ";
+    //APPEND FOR THIS STRING THE NEW PLAYER SYMBOLS FOR THE NEXT TURN.
     txt = [txt stringByAppendingString:[_arraySymbols objectAtIndex:_turnRandom]];
-    NSLog(@"%@",txt);
+    //RETURN TO VIEW CONTROLLE CLASS THE FULL STRING CREATED.
     return txt;
 }
 
+/**
+ * THIS METHODS INIZIALIZE THE MATRIX WITH ALL -1 VALUE.
+ * THIS VALUE IS THE DEFAULT INT THAT BE INDICATIVE OF THE CELL IS EMPTY.
+ */
 -(void)initMatrix
 {
     int i,j;
@@ -45,7 +63,11 @@ static int matrix[ROW][COL];
     
 }
 
-
+/**
+ * THIS METHODS IS CALLED IF YOU WANT KNOW WHO IS WINNER OF THE MATCH.
+ * ITS CONTROLS ALL WINNER POSSIBILITIES IN ALL DIRECTION.
+ * RETURN A DEFAULT VALUE THAT ARE -1 IF THERE AREN'T WINNER.
+ */
 -(int)whoWin
 {
     
@@ -105,6 +127,9 @@ static int matrix[ROW][COL];
     return -1;
 }
 
+/**
+ * THIS METHOD CONTROL ALL POSIBILITIES WINNER IN THE ORIZONTAL DIRECTION OF THE MATRIX.
+ */
 -(BOOL)verifyOrizontalWin:(int)row
 {
     
@@ -124,7 +149,9 @@ static int matrix[ROW][COL];
     }
     
 }
-
+/**
+ * THIS METHOD CONTROL ALL POSSIBILITIES WINNER IN THE VERTICAL DIRECTION OF THE MATRIX.
+ */
 -(BOOL) verifyVerticalWin:(int)row
 {
     int win=0;
@@ -143,6 +170,10 @@ static int matrix[ROW][COL];
     }
     
 }
+
+/**
+ * THIS METHOD CONTROL ALL POSSIBILITIES WINNER IN THE DIAGONAL DIRECTION OF THE MATRIX.
+ */
 
 -(BOOL) verifyDiagonalWin:(int)row
 {
@@ -164,6 +195,9 @@ static int matrix[ROW][COL];
     
 }
 
+/**
+ * THIS METHOD CONTROL ALL POSSIBILITIES WINNER IN THE DIAGONALINF DIRECTION OF THE MATRIX.
+ */
 -(BOOL)verifyDiagInfWin
 {
     
@@ -187,6 +221,10 @@ static int matrix[ROW][COL];
     
 }
 
+/**
+ * THIS METHOD CHANGE THE VALUE OF PLAYER'S TURN. 
+ * IF THERE AREN'T A WINNER THE TURN PLAYER ISN'T CHANGE.
+ */
 -(int)changeValueOfTurn
 {
     int ifWinner = [self whoWin];
@@ -240,11 +278,19 @@ static int matrix[ROW][COL];
     }
 }
 
+/**
+ * THIS METHOD HELP VIEWCONTROLLER FOR GET THE SYMBOL PLAYER'S TURN USED FOR 
+ * ASSIGN AT THE BUTTON THE CORRECT IMAGE.
+ */
 -(NSString*)getSymbolPlayer
 {
     return [_arraySymbols objectAtIndex:_turnRandom];
 }
 
+/**
+ * THIS METHOD GET AT THE VIEWCONTROLLER THE FULL TEXT FOR THE WINNER PLAYER.
+ * IT WORKS: getstringWinner - return-> "WIN THE PLAYER X";
+ */
 -(NSString*)getstringWinner
 {
     NSString * s = @"Win the player ";
@@ -252,6 +298,22 @@ static int matrix[ROW][COL];
     return s;
 }
 
+/**
+ * THIS METHOD GET IF THERE ARE THE FREE PLACES IN THE MATRIX
+ * IF THERE AREN'T FREE PLACES RETURN NO ELSE RETURN YES.
+ */
+-(BOOL)areThereFreePlaces
+{
+    int i,j;
+    for (i=0; i<ROW; i++) {
+        for (j=0; j<COL; j++) {
+            if (matrix[i][j]==-1) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
 
 
 @end

@@ -21,6 +21,7 @@
 -(NSString *)getStringTurn;
 -(NSString *)getstringWinner;
 -(NSString*)getSymbolPlayer;
+-(BOOL)areThereFreePlaces;
 @end
 
 
