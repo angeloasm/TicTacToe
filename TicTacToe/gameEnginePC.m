@@ -39,8 +39,11 @@ static int matrix[ROW][COL];
         }
         
     }
+    if(x==0){
+        return 0.0;
+    }
+        int cell = arc4random() % x;
     
-    int cell = arc4random() % 2;
     //int r = round(arr[cell]);
     //int c = (arr[cell]-r)*10;
     return arr[cell];

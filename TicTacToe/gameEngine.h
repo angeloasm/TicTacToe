@@ -26,6 +26,7 @@
 -(int)getRandomTurnValue;
 -(int)whoWin;
 -(BOOL)isEmpty:(int)row col:(int)cl;
+-(int)valueOfMatrix:(int)row col:(int)cl;
 @end
 
 

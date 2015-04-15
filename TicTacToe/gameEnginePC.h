@@ -9,6 +9,7 @@
 #ifndef TicTacToe_gameEnginePC_h
 #define TicTacToe_gameEnginePC_h
 #import "gameEngine.h"
+#import "IAGame.h"
 
 @interface gameEnginePC : gameEngine
 @property (retain,nonatomic) NSArray *playerType;

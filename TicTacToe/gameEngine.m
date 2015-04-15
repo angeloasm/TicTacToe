@@ -319,4 +319,9 @@ static int matrix[ROW][COL];
     return _turnRandom;
 }
 
+-(int)valueOfMatrix:(int)row col:(int)cl
+{
+    return matrix[row][cl];
+}
+
 @end

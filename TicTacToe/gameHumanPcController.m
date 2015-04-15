@@ -38,7 +38,7 @@ static int matrix[3][3];
 -(void)signPosition:(float)position
 {
     int r = round(position);
-    int c = (position-r)*10;
+    int c = (position*10)-(r*10);
      NSLog(@"cell: %f r: %i c: %i",position,r,c);
     id a;
     if(r==0){

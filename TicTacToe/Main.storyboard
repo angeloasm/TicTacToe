@@ -308,6 +308,16 @@
                                     <action selector="btnRestart:" destination="AKh-7Q-EEX" eventType="touchUpInside" id="Igz-UO-Ncn"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="bp9-5y-VDu">
+                                <rect key="frame" x="272" y="20" width="32" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="EXIT">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="yBK-On-DH2" kind="modal" id="KN6-Vi-S3H"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.31764705882352939" green="0.29803921568627451" blue="0.25882352941176473" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
@@ -364,6 +374,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="d7T-kk-D0P"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oZW-YN-Oig" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -380,4 +391,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="KN6-Vi-S3H"/>
+    </inferredMetricsTieBreakers>
 </document>
