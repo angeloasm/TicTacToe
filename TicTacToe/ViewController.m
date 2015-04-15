@@ -14,28 +14,9 @@
 @implementation ViewController
 
 
-/**
- * This variable init the matrix who the game is based.
- * It's static because it's used in all scope of this file.
- */
-static int matrix[3][3];
 
 
-/*************FUNCTION FOR THE RESTART*******************/
-/**
- * This function reset the matrix for restart a new game.
- */
 
--(void)resetMatrix{
-    //This variable is used for the iteration of reset matrix bidimensional array.
-    int i;
-    for(i=0;i<3;i++){
-        int j;
-        for(j=0;j<3;j++){
-            matrix[i][j]=0;
-        }
-    }
-}
 
 /**
  * Thi method is called when the user want restart the game.
@@ -43,22 +24,10 @@ static int matrix[3][3];
  */
 
 -(void)restart{
-    //This array contains the symbol of the game.
-    _myArray2 = [NSArray arrayWithObjects:@"x",@"o", nil];
-    // This is a call of function for restart the matrix.
-    [self resetMatrix];
-    //Assign a new pseudo-rand number for the turn of the user.
-   // _turnRandom=arc4random() % 2;
-    //Log of new number turn.
-    //NSLog(@"%i",_turnRandom);
     
-    //This string is set for visualize at users turn.
     
-    //id dictionary = [_myArray2 objectAtIndex:_turnRandom];
-   // NSString *i = (NSString *)dictionary;
-    //Obtain the symbol assigned for the user we can start the turn.
-    //_textTurn.text = [_txtStr stringByAppendingString:i];
-    //Reset all images of buttun view inside the matrix view.
+    [_gE startMatch];
+    [self updateTextTurn];
     [_btnView33 setImage:nil forState:UIControlStateNormal];
     [_btnView32 setImage:nil forState:UIControlStateNormal];
     [_btnView31 setImage:nil forState:UIControlStateNormal];
@@ -93,8 +62,6 @@ static int matrix[3][3];
     [_gE startMatch];
     NSString *s = [_gE getStringTurn];
     _textTurn.text = s;
-    
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -103,79 +70,11 @@ static int matrix[3][3];
 }
 
 
-
-
-/**
- Funzione che permette il cambio del turno portando il valore di _turnRandom tra 0 ed 1 per identificare il valore
- dell'array _myArray2 per saperequale valore sarà inserito .
- 
- */
-- (void)changeValueOfTurn {
-   /*
-    int winnerid = [self whoWin];
-    if(winnerid!=-1){
-        _txtStr = @"Vince il giocatore con la ";
-        if(winnerid==2){
-            _turnRandom=0;
-            _textTurn.text = [_txtStr stringByAppendingString:@"x"];
-        }else{
-            _turnRandom=1;
-            _textTurn.text = [_txtStr stringByAppendingString:@"o"];
-        }
-        
-    }
-     NSLog(@"Turn:%i",_turnRandom);
-    if(winnerid==-1){
-    if(_turnRandom == 1){
-        _turnRandom=0;
-        _txtStr = @"Gioca il giocatore con la ";
-        id dictionary = [_myArray2 objectAtIndex:_turnRandom+1];
-        NSString *i = (NSString *)dictionary;
-        _textTurn.text = [_txtStr stringByAppendingString:i];
-    }else{
-        _turnRandom++;
-        _txtStr = @"Gioca il giocatore con la ";
-        id dictionary = [_myArray2 objectAtIndex:_turnRandom-1];
-        NSString *i = (NSString *)dictionary;
-        _textTurn.text = [_txtStr stringByAppendingString:i];
-    }
-    }
-    */
+-(void)updateTextTurn
+{
+    NSString *txt = [_gE getStringTurn];
+    _textTurn.text = txt;
 }
-
-/**
- Funzione che controlla se l'indice che si è toccati risulta essere effettivamente libero o già occupato da un'altro segno!
- */
-
-- (BOOL)isEmpty:(int)index {
-    if([[_myArrayTic objectAtIndex:index] isEqualToString:@"0"]){
-        return YES;
-    }else{
-        return NO;
-    }
-    
-}
-
-/*
- Funzione che permette di assegnare il valore di un tasto premuto, per essere occupato, nell'array del tic tac toe
- */
-
-- (BOOL)arraySign:(int)row and:(int)col{
-    
-    /*
-     Riadattamento del codice alla matrice int[3][3]
-     */
-  /*
-    if(matrix[row][col]==0){
-        matrix[row][col]=_turnRandom+1;
-        [self changeValueOfTurn];
-    }
-    return YES;
-    */
-    return YES;
-
-}
-
 
 
 - (IBAction)restartGame:(id)sender {
@@ -185,167 +84,163 @@ static int matrix[3][3];
 
 - (IBAction)btn33:(id)sender {
     // SE si verifica che la cella in questione ( 3:3 ) è piena non fare nulla!
-   /*if([self arraySign:2 and:2]){
-        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
-            
+    if ([_gE arraySignPosition:2 col:2]) {
+        if ([[_gE getSymbolPlayer] isEqualToString:@"o"]) {
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView33 setImage:img forState:UIControlStateNormal];
-            
-            
         }else{
-            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
-                UIImage *img = [UIImage imageNamed:@"x.png"];
-                [_btnView33 setImage:img forState:UIControlStateNormal];
-                
-            }
+            UIImage *img = [UIImage imageNamed:@"x.png"];
+            [_btnView33 setImage:img forState:UIControlStateNormal];
+            
+        }
+        int areWinner = [_gE changeValueOfTurn];
+        if (areWinner == 0) {
+            [self updateTextTurn];
+        }else{
+            [self showWinner];
         }
     }
-*/
 }
 
 - (IBAction)btn32:(id)sender {
     // SE si verifica che la cella in questione ( 3:2 ) è piena non fare nulla!
-    /*if([self arraySign:2 and:1]){
-        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
-            
+    if ([_gE arraySignPosition:2 col:1]) {
+        if ([[_gE getSymbolPlayer] isEqualToString:@"o"]) {
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView32 setImage:img forState:UIControlStateNormal];
-            
-            
         }else{
-            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
-                UIImage *img = [UIImage imageNamed:@"x.png"];
-                [_btnView32 setImage:img forState:UIControlStateNormal];
-                
-            }
+            UIImage *img = [UIImage imageNamed:@"x.png"];
+            [_btnView32 setImage:img forState:UIControlStateNormal];
+            
+        }
+        int areWinner = [_gE changeValueOfTurn];
+        if (areWinner == 0) {
+            [self updateTextTurn];
+        }else{
+            [self showWinner];
         }
     }
-*/
 }
 
 - (IBAction)btn31:(id)sender {
     // SE si verifica che la cella in questione ( 3:1 ) è piena non fare nulla!
-   /* if([self arraySign:2 and:0]){
-        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
-            
+    if ([_gE arraySignPosition:2 col:0]) {
+        if ([[_gE getSymbolPlayer] isEqualToString:@"o"]) {
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView31 setImage:img forState:UIControlStateNormal];
-            
-            
         }else{
-            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
-                UIImage *img = [UIImage imageNamed:@"x.png"];
-                [_btnView31 setImage:img forState:UIControlStateNormal];
-                
-            }
+            UIImage *img = [UIImage imageNamed:@"x.png"];
+            [_btnView31 setImage:img forState:UIControlStateNormal];
+            
+        }
+        int areWinner = [_gE changeValueOfTurn];
+        if (areWinner == 0) {
+            [self updateTextTurn];
+        }else{
+            [self showWinner];
         }
     }
-    */
 }
-
-
 
 - (IBAction)btn23:(id)sender {
     // SE si verifica che la cella in questione ( 2:3 ) è piena non fare nulla!
-   /* if([self arraySign:1 and: 2]){
-        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
-            
+    if ([_gE arraySignPosition:1 col:2]) {
+        if ([[_gE getSymbolPlayer] isEqualToString:@"o"]) {
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView23 setImage:img forState:UIControlStateNormal];
-            
-            
         }else{
-            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
-                UIImage *img = [UIImage imageNamed:@"x.png"];
-                [_btnView23 setImage:img forState:UIControlStateNormal];
-                
-            }
+            UIImage *img = [UIImage imageNamed:@"x.png"];
+            [_btnView23 setImage:img forState:UIControlStateNormal];
+            
         }
-    }*/
+        int areWinner = [_gE changeValueOfTurn];
+        if (areWinner == 0) {
+            [self updateTextTurn];
+        }else{
+            [self showWinner];
+        }
+    }
 }
 
 - (IBAction)btn22:(id)sender {
     // SE si verifica che la cella in questione ( 2:2 ) è piena non fare nulla!
-   /* if([self arraySign:1 and:1]){
-        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
-            
+    if ([_gE arraySignPosition:1 col:1]) {
+        if ([[_gE getSymbolPlayer] isEqualToString:@"o"]) {
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView22 setImage:img forState:UIControlStateNormal];
-            
-            
         }else{
-            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
-                UIImage *img = [UIImage imageNamed:@"x.png"];
-                [_btnView22 setImage:img forState:UIControlStateNormal];
-                
-            }
+            UIImage *img = [UIImage imageNamed:@"x.png"];
+            [_btnView22 setImage:img forState:UIControlStateNormal];
             
         }
+        int areWinner = [_gE changeValueOfTurn];
+        if (areWinner == 0) {
+            [self updateTextTurn];
+        }else{
+            [self showWinner];
+        }
     }
-    [UIView animateWithDuration:2 animations:^(){
-        _btnView22.alpha =0.3;
-    }];*/
 }
 
 - (IBAction)btn21:(id)sender {
     // SE si verifica che la cella in questione ( 2:1 ) è piena non fare nulla!
-  /* if([self arraySign:1 and:0]){
-        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
-            
+    if ([_gE arraySignPosition:1 col:0]) {
+        if ([[_gE getSymbolPlayer] isEqualToString:@"o"]) {
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView21 setImage:img forState:UIControlStateNormal];
-            
-            
         }else{
-            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
-                UIImage *img = [UIImage imageNamed:@"x.png"];
-                [_btnView21 setImage:img forState:UIControlStateNormal];
-                
-            }
+            UIImage *img = [UIImage imageNamed:@"x.png"];
+            [_btnView21 setImage:img forState:UIControlStateNormal];
+            
+        }
+        int areWinner = [_gE changeValueOfTurn];
+        if (areWinner == 0) {
+            [self updateTextTurn];
+        }else{
+            [self showWinner];
         }
     }
-*/
 }
-
 
 - (IBAction)btn13:(id)sender {
     // SE si verifica che la cella in questione ( 1:3 ) è piena non fare nulla!
-   /* if([self arraySign:0 and:2]){
-        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
-            
+    if ([_gE arraySignPosition:0 col:2]) {
+        if ([[_gE getSymbolPlayer] isEqualToString:@"o"]) {
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView13 setImage:img forState:UIControlStateNormal];
-            
-            
         }else{
-            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
-                UIImage *img = [UIImage imageNamed:@"x.png"];
-                [_btnView13 setImage:img forState:UIControlStateNormal];
-                
-            }
+            UIImage *img = [UIImage imageNamed:@"x.png"];
+            [_btnView13 setImage:img forState:UIControlStateNormal];
+            
         }
-    }*/
-
+        int areWinner = [_gE changeValueOfTurn];
+        if (areWinner == 0) {
+            [self updateTextTurn];
+        }else{
+            [self showWinner];
+        }
+    }
 }
 
-//Caso in cui 
 - (IBAction)btn12:(id)sender {
     // SE si verifica che la cella in questione ( 1:2 ) è piena non fare nulla!
-    /*if([self arraySign:0 and:1]){
-        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
-            
+    if ([_gE arraySignPosition:0 col:1]) {
+        if ([[_gE getSymbolPlayer] isEqualToString:@"o"]) {
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView12 setImage:img forState:UIControlStateNormal];
-            
-            
         }else{
-            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
-                UIImage *img = [UIImage imageNamed:@"x.png"];
-                [_btnView12 setImage:img forState:UIControlStateNormal];
-                
-            }
+            UIImage *img = [UIImage imageNamed:@"x.png"];
+            [_btnView12 setImage:img forState:UIControlStateNormal];
+            
         }
-    }*/
+        int areWinner = [_gE changeValueOfTurn];
+        if (areWinner == 0) {
+            [self updateTextTurn];
+        }else{
+            [self showWinner];
+        }
+        
+    }
 }
 
 /*
@@ -355,25 +250,38 @@ static int matrix[3][3];
 - (IBAction)btn11:(id)sender {
     
     // SE si verifica che la cella in questione ( 1:1 ) è piena non fare nulla!
-   /* if([self arraySign:0 and:0]){
-        if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"o"]){
-            
+    if ([_gE arraySignPosition:0 col:0]) {
+        if ([[_gE getSymbolPlayer] isEqualToString:@"o"]) {
             UIImage *img = [UIImage imageNamed:@"o.png"];
             [_btnView11 setImage:img forState:UIControlStateNormal];
-            
-            
         }else{
-            if([[_myArray2 objectAtIndex: _turnRandom] isEqualToString:@"x"]){
-                UIImage *img = [UIImage imageNamed:@"x.png"];
-                [_btnView11 setImage:img forState:UIControlStateNormal];
-            
-            }
-        }
-    }else{
+            UIImage *img = [UIImage imageNamed:@"x.png"];
+            [_btnView11 setImage:img forState:UIControlStateNormal];
 
+        }
+        int areWinner = [_gE changeValueOfTurn];
+        NSLog(@"are winner: %i",areWinner);
+        if (areWinner == 0) {
+            [self updateTextTurn];
+        }else{
+            [self showWinner];
+        }
     }
-    */
 }
 
+/**
+ * THIS METHODS STOP ALL INTERACTION WITH UI OF MATRIX OF TIC TAC TOE.
+ * INSERT THE TEXT OF WINNER AT THE LABEL _TEXTTURN.
+ */
+-(void)showWinner
+{
+    _textTurn.text = [_gE getstringWinner];
+    [self blockAllBtn];
+}
+
+-(void)blockAllBtn
+{
+    
+}
 
 @end

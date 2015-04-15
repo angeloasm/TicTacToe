@@ -15,10 +15,12 @@
 @property(retain,nonatomic) NSArray *arraySymbols;
 @property int turnRandom;
 
--(void)arraySignPosition:(int)row col:(int)cl;
--(void)changeValueOfTurn;
+-(BOOL)arraySignPosition:(int)row col:(int)cl;
+-(int)changeValueOfTurn;
 -(void)startMatch;
 -(NSString *)getStringTurn;
+-(NSString *)getstringWinner;
+-(NSString*)getSymbolPlayer;
 @end
 
 

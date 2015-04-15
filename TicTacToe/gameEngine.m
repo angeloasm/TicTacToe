@@ -26,7 +26,7 @@ static int matrix[ROW][COL];
     int i,j;
     for(i=0;i<ROW;i++){
         for(j=0;j<COL;j++){
-            matrix[i][j]=0;
+            matrix[i][j]=-1;
         }
     }
 }
@@ -49,8 +49,8 @@ static int matrix[ROW][COL];
 -(int)whoWin
 {
     
-    NSLog(@"Turn: %i",_turnRandom+1);
-    int valueOfPlayer = _turnRandom+1;
+    NSLog(@"Turn: %i",_turnRandom);
+    int valueOfPlayer = _turnRandom;
     NSLog(@"matrice:");
     
     NSLog(@"%i %i %i",matrix[0][0],matrix[0][1],matrix[0][2]);
@@ -66,7 +66,7 @@ static int matrix[ROW][COL];
         
         
         for(col=0;col<3;col++){
-            if(matrix[row][col]!=0){
+            if(matrix[row][col]!=-1){
                 
                 
                 
@@ -110,7 +110,7 @@ static int matrix[ROW][COL];
     
     int win=0;
     int col;
-    int valueOfPlayer = _turnRandom+1;
+    int valueOfPlayer = _turnRandom;
     for(col=0;col<3;col++){
         if(matrix[row][col]==valueOfPlayer){
             win++;
@@ -129,7 +129,7 @@ static int matrix[ROW][COL];
 {
     int win=0;
     
-    int valueOfPlayer = _turnRandom+1;
+    int valueOfPlayer = _turnRandom;
     int j=0;
     for(j=0;j<3;j++){
         if(matrix[j][row]==valueOfPlayer){
@@ -148,7 +148,7 @@ static int matrix[ROW][COL];
 {
     int diag=0;
     int d = 0;
-    int valueOfPlayer = _turnRandom+1;
+    int valueOfPlayer = _turnRandom;
     for(d=0;d<3;d++){
         if(matrix[d][d]==valueOfPlayer){
             diag++;
@@ -170,7 +170,7 @@ static int matrix[ROW][COL];
     int diagInf=0;
     int d=2;
     int r=0;
-    int valueOfPlayer=_turnRandom+1;
+    int valueOfPlayer=_turnRandom;
     for(r=0;r<3;r++){
         if(matrix[d][r]==valueOfPlayer){
             diagInf++;
@@ -187,8 +187,19 @@ static int matrix[ROW][COL];
     
 }
 
--(void)changeValueOfTurn
+-(int)changeValueOfTurn
 {
+    int ifWinner = [self whoWin];
+    if (ifWinner==-1) {
+        if(_turnRandom==0){
+            _turnRandom++;
+        }else{
+            _turnRandom=0;
+        }
+        return 0;
+    }else{
+        return 1;
+    }
     
 }
 
@@ -200,7 +211,7 @@ static int matrix[ROW][COL];
 -(BOOL)isEmpty:(int)row col:(int)cl
 {
     //Control if the matrix value at row index and col index is equal to 0
-    if(matrix[row][cl]==0){
+    if(matrix[row][cl]==-1){
         //if it's true return the YES bool. The cell is free for insert new value of Symbols.
         return YES;
     }else{
@@ -210,12 +221,37 @@ static int matrix[ROW][COL];
 }
 
 /*
- * THIS FUNCTION SIGNED THE POSITION CLICKED BY THE PLAYER WITH HIS SYMBOLS ON INDEX OF MATRIX.
+ * THIS FUNCTION SIGNED THE POSITION CLICKED BY THE PLAYER WITH HIS SYMBOLS ON INDEX OF MATRIX. 
+ * ANOTHER WORK THAT THIS METHODS DO, IT IS, IF THE CELL IS EMPTY SET THE VALUE AND CALL THE FUNCTION FOR CHANGE THE PLAYER'S TURN.
  */
--(void)arraySignPosition:(int)row col:(int)cl
+-(BOOL)arraySignPosition:(int)row col:(int)cl
 {
-    
+    //CONTROL IF THE CELL WITH ROW AND COL IS EMPTY
+    if ([self isEmpty:row col:cl]) {
+        //IF IS TRUE ASSIGN THE SYMBOL'S PLAYER AT THE SAME CELL OF MATRIX
+        matrix[row][cl]=_turnRandom;
+        //CALL THE FUNCTION FOR CHANGE THE PLAYER'S TURN.
+        //[self changeValueOfTurn];
+        //RETURN THE STATEMENT USED FOR THE VIEW CONTROLLER METHODS
+        return YES;
+    }else{
+        //RETURN THE STATEMENT IS IF NOT POSSIBLE TO INSERT INTO THIS CELL THE PLAYER'S SYMBOL.
+        return NO;
+    }
 }
+
+-(NSString*)getSymbolPlayer
+{
+    return [_arraySymbols objectAtIndex:_turnRandom];
+}
+
+-(NSString*)getstringWinner
+{
+    NSString * s = @"Win the player ";
+    s = [s stringByAppendingString:[_arraySymbols objectAtIndex:_turnRandom]];
+    return s;
+}
+
 
 
 @end
